@@ -80,6 +80,8 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
+const chai = require('chai');
+const assert = chai.assert;
 // immediately after the Browser declaration, add your project URL to the site property of the variable:
 // Browser.site = 'http://localhost:3000';
 
