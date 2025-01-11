@@ -77,7 +77,7 @@ suite('Functional Tests', function () {
     });
   });
 });
-});
+
 
 
 const Browser = require('zombie');
@@ -92,6 +92,11 @@ suite('Functional Tests with Zombie.js', function () {
 
   suiteSetup(function (done) {
     browser.visit('/', done); // Navigate to the root page
+  });
+  suite('Headless browser', function () {
+    test('should have a working "site" property', function() {
+      assert.isNotNull(browser.site);
+    });
   });
 
   suite('"Famous Italian Explorers" form', function () {
@@ -124,7 +129,7 @@ suite('Functional Tests with Zombie.js', function () {
     });
   });
 });
-
+});
 
 
 
