@@ -98,7 +98,7 @@ suite('Functional Tests with Zombie.js', function () {
     // Test #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
       browser
-        .fill('#surname', 'Colombo') // Use the ID selector for input
+        .fill('surname', 'Colombo') // Use the ID selector for input
         .pressButton('#submit', function () { // Use the ID selector for the button
           // Assert the page response
           browser.assert.success(); // Status 200
@@ -112,7 +112,7 @@ suite('Functional Tests with Zombie.js', function () {
     // Test #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
       browser
-        .fill('#surname', 'Vespucci') // Use the ID selector for input
+        .fill('surname', 'Vespucci') // Use the ID selector for input
         .pressButton('#submit', function () { // Use the ID selector for the button
           // Assert the page response
           browser.assert.success(); // Status 200
