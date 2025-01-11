@@ -1,3 +1,4 @@
+const Browser = require('zombie');
 const chai = require('chai');
 const assert = chai.assert;
 
@@ -76,11 +77,9 @@ suite('Functional Tests', function () {
       done();
     });
   });
-});
 
 
 
-const Browser = require('zombie');
 // immediately after the Browser declaration, add your project URL to the site property of the variable:
 // Browser.site = 'http://localhost:3000';
 
@@ -131,7 +130,7 @@ suite('Functional Tests with Zombie.js', function () {
 });
 });
 
-
+});
 
 
 
