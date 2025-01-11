@@ -132,7 +132,7 @@ suite('Functional Tests with Zombie.js', function () {
     done();
     });
   });
-});
+
 
 
 
@@ -153,6 +153,7 @@ suite('Functional Tests with Zombie.js', function () {
     });
   });
   });
+});
 });
 
 
