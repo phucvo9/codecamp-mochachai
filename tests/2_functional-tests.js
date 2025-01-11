@@ -130,6 +130,7 @@ suite('Functional Tests with Zombie.js', function () {
     browser.assert.element('span#dates', 1);
       done();
     });
+  });
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
       assert.fail();
@@ -137,8 +138,7 @@ suite('Functional Tests with Zombie.js', function () {
       done();
     });
   });
-  
   });
 });
-});
+
 
