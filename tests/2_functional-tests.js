@@ -79,7 +79,7 @@ suite('Functional Tests', function () {
   });
 
 
-
+const Browser = require('zombie');
 // immediately after the Browser declaration, add your project URL to the site property of the variable:
 // Browser.site = 'http://localhost:3000';
 
@@ -101,9 +101,8 @@ suite('Functional Tests with Zombie.js', function () {
   suite('"Famous Italian Explorers" form', function () {
     // Test #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      browser
-        .fill('surname', 'Colombo') // Use the ID selector for input
-        .pressButton('#submit', function () { // Use the ID selector for the button
+      browser.fill('surname', 'Colombo', async function(){ // Use the ID selector for input
+        browser.pressButton('#submit', function () { // Use the ID selector for the button
           // Assert the page response
           browser.assert.success(); // Status 200
           browser.assert.text('span#name', 'Cristoforo');
