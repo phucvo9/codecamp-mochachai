@@ -77,6 +77,7 @@ suite('Functional Tests', function () {
     });
   });
 });
+});
 
 const Browser = require('zombie');
 // immediately after the Browser declaration, add your project URL to the site property of the variable:
@@ -133,10 +134,6 @@ suite('Functional Tests with Zombie.js', function () {
     });
   });
 
-
-
-
-  
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
       browser.fill('surname', 'Vespucci').pressButton('submit', function() {
@@ -154,7 +151,7 @@ suite('Functional Tests with Zombie.js', function () {
   });
   });
 });
-});
+
 
 
 
