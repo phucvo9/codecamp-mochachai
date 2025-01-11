@@ -41,14 +41,34 @@ suite('Functional Tests', function () {
         .put('/travellers')
 
         .end(function (err, res) {
-          assert.fail();
+          assert.equal(res.status, 200, 'response status should be 200');
+          assert.equal(res.type, 'application/json', 'Response should be json');
+          assert.equal(
+            res.body.name,
+            'Cristoforo',
+            'res.body.name should be "Christoforo"'
+      );
+      assert.equal(
+        res.body.surname,
+        'Colombo',
+        'res.body.surname should be "Colombo"'
+      );
 
           done();
         });
     });
     // #4
     test('Send {surname: "da Verrazzano"}', function (done) {
-      assert.fail();
+      chai
+      .request(server)
+      .put('/travellers')
+      .send({ surname: 'da Verrazzano' })
+      /** place your tests inside the callback **/
+      .end(function(err, res) {
+        assert.equal(res.status, 200, 'response status should be 200');
+        assert.equal(res.type, 'application/json', 'Response should be json');
+        assert.equal(res.body.name, 'Giovanni');
+        assert.equal(res.body.surname, 'da Verrazzano');
 
       done();
     });
@@ -56,11 +76,24 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
+// immediately after the Browser declaration, add your project URL to the site property of the variable:
+// Browser.site = 'http://localhost:3000';
 
+Browser.site="http://localhost:3000/"; 
+
+//Then at the root level of the 'Functional Tests with Zombie.js' suite, instantiate a new instance of the Browser object with the following code:
+//const browser = new Browser();
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
-
-
+  const browser = new Browser();
+// And use the suiteSetup hook to direct the browser to the / route with the following code:
+//  suiteSetup(function(done) {
+//    return browser.visit('/', done);
+//  });
+  suiteSetup(function(done) {
+  return browser.visit('/', done);
+});
+// NOTE: I also tried using `return browser.visit('http://localhost:3000/', done);` just in case that did something, but no result
 
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
@@ -82,4 +115,5 @@ suite('Functional Tests with Zombie.js', function () {
       done();
     });
   });
+});
 });
