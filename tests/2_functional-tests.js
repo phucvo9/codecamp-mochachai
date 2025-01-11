@@ -103,11 +103,31 @@ suite('Functional Tests with Zombie.js', function () {
       assert.isNotNull(browser.site);
     });
   });
-
+  
   suite('"Famous Italian Explorers" form', function () {
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      assert.fail();
+      // fill the form...
+  // then submit it pressing 'submit' button.
+  //
+  // in the callback...
+  // assert that status is OK 200
+  // assert that the text inside the element 'span#name' is 'Cristoforo'
+  // assert that the text inside the element 'span#surname' is 'Colombo'
+  // assert that the element(s) 'span#dates' exist and their count is 1
+  browser.fill('surname', 'Colombo').pressButton('submit', function() {
+    /** YOUR TESTS HERE, Don't forget to remove assert.fail() **/
+
+    // pressButton is Async.  Waits for the ajax call to complete...
+
+    // assert that status is OK 200
+    browser.assert.success();
+    // assert that the text inside the element 'span#name' is 'Cristoforo'
+    browser.assert.text('span#name', 'Cristoforo');
+    // assert that the text inside the element 'span#surname' is 'Colombo'
+    browser.assert.text('span#surname', 'Colombo');
+    // assert that the element(s) 'span#dates' exist and their count is 1
+    browser.assert.element('span#dates', 1);
 
       done();
     });
@@ -118,31 +138,7 @@ suite('Functional Tests with Zombie.js', function () {
       done();
     });
   });
-  test('submit "surname" : "Colombo" - write your e2e test...', function(done) {
-    // fill the form...
-    // then submit it pressing 'submit' button.
-    //
-    // in the callback...
-    // assert that status is OK 200
-    // assert that the text inside the element 'span#name' is 'Cristoforo'
-    // assert that the text inside the element 'span#surname' is 'Colombo'
-    // assert that the element(s) 'span#dates' exist and their count is 1
-    browser.fill('surname', 'Colombo').pressButton('submit', function() {
-      /** YOUR TESTS HERE, Don't forget to remove assert.fail() **/
   
-      // pressButton is Async.  Waits for the ajax call to complete...
-  
-      // assert that status is OK 200
-      browser.assert.success();
-      // assert that the text inside the element 'span#name' is 'Cristoforo'
-      browser.assert.text('span#name', 'Cristoforo');
-      // assert that the text inside the element 'span#surname' is 'Colombo'
-      browser.assert.text('span#surname', 'Colombo');
-      // assert that the element(s) 'span#dates' exist and their count is 1
-      browser.assert.element('span#dates', 1);
-  
-      done(); // It's an async test, so we have to call 'done()''
-    });
   });
 });
-});
+
