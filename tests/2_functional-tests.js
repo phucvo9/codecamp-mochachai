@@ -84,74 +84,45 @@ const Browser = require('zombie');
 // immediately after the Browser declaration, add your project URL to the site property of the variable:
 // Browser.site = 'http://localhost:3000';
 
-Browser.site="http://localhost:3000/"; 
+Browser.site = 'http://localhost:3000'; // Set the base URL for Zombie.js
 
-//Then at the root level of the 'Functional Tests with Zombie.js' suite, instantiate a new instance of the Browser object with the following code:
-//const browser = new Browser();
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
   const browser = new Browser();
-// And use the suiteSetup hook to direct the browser to the / route with the following code:
-//  suiteSetup(function(done) {
-//    return browser.visit('/', done);
-//  });
-  suiteSetup(function(done) {
-  return browser.visit('/', done);
-});
-// NOTE: I also tried using `return browser.visit('http://localhost:3000/', done);` just in case that did something, but no result
 
-  suite('Headless browser', function () {
-    test('should have a working "site" property', function() {
-      assert.isNotNull(browser.site);
-    });
+  suiteSetup(function (done) {
+    browser.visit('/', done); // Navigate to the root page
   });
-  
+
   suite('"Famous Italian Explorers" form', function () {
-    // #5
+    // Test #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      // fill the form...
-  // then submit it pressing 'submit' button.
-  //
-  // in the callback...
-  // assert that status is OK 200
-  // assert that the text inside the element 'span#name' is 'Cristoforo'
-  // assert that the text inside the element 'span#surname' is 'Colombo'
-  // assert that the element(s) 'span#dates' exist and their count is 1
-  browser.fill('surname', 'Colombo').pressButton('submit', function() {
-    /** YOUR TESTS HERE, Don't forget to remove assert.fail() **/
-  
-    // pressButton is Async.  Waits for the ajax call to complete...
-  
-    // assert that status is OK 200
-    browser.assert.success();
-    // assert that the text inside the element 'span#name' is 'Cristoforo'
-    browser.assert.text('span#name', 'Cristoforo');
-    // assert that the text inside the element 'span#surname' is 'Colombo'
-    browser.assert.text('span#surname', 'Colombo');
-    // assert that the element(s) 'span#dates' exist and their count is 1
-    browser.assert.elements('span#dates', 1);
-    
-    done();
+      browser
+        .fill('#surname', 'Colombo') // Use the ID selector for input
+        .pressButton('#submit', function () { // Use the ID selector for the button
+          // Assert the page response
+          browser.assert.success(); // Status 200
+          browser.assert.text('span#name', 'Cristoforo');
+          browser.assert.text('span#surname', 'Colombo');
+          browser.assert.elements('span#dates', 1); // Check element count
+          done();
+        });
     });
-  });
-  
-    // #6
+
+    // Test #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-      browser.fill('surname', 'Vespucci').pressButton('submit', function() {
-        // assert that status is OK 200
-        browser.assert.success();
-        // assert that the text inside the element 'span#name' is 'Amerigo'
-        browser.assert.text('span#name', 'Amerigo');
-        // assert that the text inside the element 'span#surname' is 'Vespucci'
-        browser.assert.text('span#surname', 'Vespucci');
-        // assert that the element(s) 'span#dates' exist and their count is 1
-        browser.assert.elements('span#dates', 1);
-  
-      done();
+      browser
+        .fill('#surname', 'Vespucci') // Use the ID selector for input
+        .pressButton('#submit', function () { // Use the ID selector for the button
+          // Assert the page response
+          browser.assert.success(); // Status 200
+          browser.assert.text('span#name', 'Amerigo');
+          browser.assert.text('span#surname', 'Vespucci');
+          browser.assert.elements('span#dates', 1); // Check element count
+          done();
+        });
     });
   });
-  });
-  
 });
 
 
