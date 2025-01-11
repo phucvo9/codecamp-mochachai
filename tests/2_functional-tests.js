@@ -131,22 +131,25 @@ suite('Functional Tests with Zombie.js', function () {
     
     done();
     });
+  });
   
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-      browser.assert.success();
-    // assert that the text inside the element 'span#name' is 'Amerigo'
-    browser.assert.text('span#name', 'Amerigo');
-    // assert that the text inside the element 'span#surname' is 'Vespucci'
-    browser.assert.text('span#surname', 'Vespucci');
-    // assert that the element(s) 'span#dates' exist and their count is 1
-    browser.assert.element('span#dates', 1);
+      browser.fill('surname', 'Vespucci').pressButton('submit', function() {
+        // assert that status is OK 200
+        browser.assert.success();
+        // assert that the text inside the element 'span#name' is 'Amerigo'
+        browser.assert.text('span#name', 'Amerigo');
+        // assert that the text inside the element 'span#surname' is 'Vespucci'
+        browser.assert.text('span#surname', 'Vespucci');
+        // assert that the element(s) 'span#dates' exist and their count is 1
+        browser.assert.element('span#dates', 1);
 
       done();
     });
   });
   });
 });
-});
+
 
 
